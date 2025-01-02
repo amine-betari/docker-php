@@ -4,3 +4,9 @@ services:
         image: nginx:latest
         ports:
           - "82:80"
+    app:
+        build:
+            context: ./php
+            dockerfile: Dockerfile
+            # File pour créer des images qui sont utilisés pour construire vos containers
+            # Image existe déja mais on va la personaliser
