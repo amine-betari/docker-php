@@ -8,12 +8,17 @@ services:
             - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
     app:
         build:
-            context: ./php
-            dockerfile: Dockerfile
+            # When building a Docker image,
+            # The build context is the directory Docker uses to look for files to copy into the image.
+            context: .
+            dockerfile: php/Dockerfile
             # File pour créer des images qui sont utilisés pour construire vos containers
             # Image existe déja mais on va la personaliser
         volumes:
-            -   ./app:/app
+            - /var/www/html/vendor
+            # If I specify juste the one location, I am saying protect this location inside the container
+            # Docker manages this volume, making it persistent but not linked to your host filesystem.
+            -   ./app:/var/www/html
     db:
         image: mysql:8.0
         volumes:
@@ -28,3 +33,7 @@ services:
             MYSQL_DATABASE: docker-php
 volumes:
     mysqldata:
+
+
+
+# docker-composer up --build ( will look at my docker files and build images for me )
