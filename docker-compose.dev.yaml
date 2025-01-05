@@ -1,11 +1,14 @@
-#version: '3.3'
+# docker-compose -f docker-compose.dev.yaml up --build -d
+# docker-compose -f docker-compose.dev.yaml up --env-file FILE --build -d
 services:
+    # nginx
     web:
         image: nginx:latest
         ports:
           - "82:80"
         volumes:
             - ./nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+    # php
     app:
         build:
             # When building a Docker image,
@@ -16,6 +19,13 @@ services:
             # Image exist aleardy bu we gonna customise
         volumes:
             -   ./app:/var/www/html
+        environment:
+            MYSQL_HOST: db
+            MYSQL_PORT: ${MYSQL_PORT}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
+            MYSQL_USER: ${MYSQL_USER}
+    # mysql
     db:
         image: mysql:8.0
         volumes:
@@ -24,10 +34,10 @@ services:
             - "4306:3306"
         restart: unless-stopped
         environment:
-            MYSQL_ROOT_PASSWORD: secret
-            MYSQL_USER: user
-            MYSQL_PASSWORD: secret
-            MYSQL_DATABASE: docker-php
+            MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_USER: ${MYSQL_USER}
+            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+            MYSQL_DATABASE: ${MYSQL_DATABASE}
 volumes:
     mysqldata:
 
