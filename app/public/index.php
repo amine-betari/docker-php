@@ -1,4 +1,6 @@
-<?php ?>
+<?php
+echo "SALAM aa";
+?>
 
 <!doctype html>
 <html lang="en">
