@@ -1,3 +1,4 @@
+# docker build --target app -t abetari/php-composer:1.0 -f ./php/Dockerfile .
 FROM php:8.1-fpm-alpine as app
 # alpine veut dire une image minimaliste avec un minimum de choses dedans
 # Comme ça je peux installer ce que je veux
