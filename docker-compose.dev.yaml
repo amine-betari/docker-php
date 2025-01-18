@@ -1,5 +1,5 @@
 # docker-compose -f docker-compose.dev.yaml up --build -d
-# docker-compose -f docker-compose.dev.yaml up --env-file FILE --build -d
+# docker-compose -f docker-compose.dev.yaml  --env-file .env.local up --build -d
 services:
     # nginx
     # docker exec -it docker-php_app_1 bin/bash
@@ -19,7 +19,7 @@ services:
             dockerfile: php/Dockerfile
             # File pour créer des images qui sont utilisés pour construire vos containers
             # Image exist aleardy bu we gonna customise
-            target: app_dev
+            target: "${BUILD_TARGET:-app}"
         volumes:
             - ./app:/var/www/html
             # Si tu veux modifier le fichier sans reconstruire l'image
