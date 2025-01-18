@@ -14,11 +14,12 @@ services:
             # The build context is the directory Docker uses to look for files to copy into the image.
             context: .
             dockerfile: php/Dockerfile
+            target: app
             # File pour créer des images qui sont utilisés pour construire vos containers
             # Image existe déja mais on va la personaliser
 #        volumes:
 #            - /var/www/html/vendor
-#            # If I specify juste the one location, I am saying protect this location inside the container
+#            # If I specify just the one location, I am saying protect this location inside the container
 #            # Docker manages this volume, making it persistent but not linked to your host filesystem.
 #            -   ./app:/var/www/html
     db:
