@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/predis/predis.git",
-                "reference": "b36c2f928f6934c8e8a8e4d4f81529f902102492"
+                "reference": "deed24c4180d8da5aa81c454e11400e13c19fdab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/predis/predis/zipball/b36c2f928f6934c8e8a8e4d4f81529f902102492",
-                "reference": "b36c2f928f6934c8e8a8e4d4f81529f902102492",
+                "url": "https://api.github.com/repos/predis/predis/zipball/deed24c4180d8da5aa81c454e11400e13c19fdab",
+                "reference": "deed24c4180d8da5aa81c454e11400e13c19fdab",
                 "shasum": ""
             },
             "require": {
@@ -49,7 +49,7 @@
                     "role": "Maintainer"
                 }
             ],
-            "description": "A flexible and feature-complete Redis client for PHP.",
+            "description": "A flexible and feature-complete Redis/Valkey client for PHP.",
             "homepage": "http://github.com/predis/predis",
             "keywords": [
                 "nosql",
@@ -66,7 +66,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-11-25T17:58:29+00:00"
+            "time": "2025-01-20T17:52:18+00:00"
         },
         {
             "name": "psr/cache",
@@ -1263,12 +1263,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "d5c1874669df56f20d4a3e08432005cccaff436b"
+                "reference": "01e8295d406558f44bf5e07136737bfd7fd72fa8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/d5c1874669df56f20d4a3e08432005cccaff436b",
-                "reference": "d5c1874669df56f20d4a3e08432005cccaff436b",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/01e8295d406558f44bf5e07136737bfd7fd72fa8",
+                "reference": "01e8295d406558f44bf5e07136737bfd7fd72fa8",
                 "shasum": ""
             },
             "require": {
@@ -1358,7 +1358,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2025-01-02T08:58:47+00:00"
+            "time": "2025-01-15T08:44:56+00:00"
         },
         {
             "name": "sebastian/cli-parser",

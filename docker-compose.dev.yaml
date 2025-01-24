@@ -49,6 +49,8 @@ services:
     db:
         image: mysql:8.0
         volumes:
+            # pour stocker les données de la base de données MySQL dans le répertoire /var/lib/mysql du conteneur.
+            # Cela garantit que les données persistent même après que le conteneur est supprimé ou reconstruit.
             -   mysqldata:/var/lib/mysql
         ports:
             - "4306:3306"

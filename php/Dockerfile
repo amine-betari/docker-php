@@ -46,6 +46,8 @@ COPY ./app .
 # run composer dump-autoload --optimize
 RUN composer dump-autoload --optimize
 
+# Donne les droits nécessaires
+# RUN chown -R www-data:www-data /var/www/html
 
 # Dev image
 # This stage is meant to be target-built into a separate image
