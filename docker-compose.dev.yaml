@@ -66,7 +66,4 @@ services:
         image: redis:latest
 volumes:
     mysqldata:
-
-
-
 # docker-composer up --build ( will look at my docker files and build images for me )
