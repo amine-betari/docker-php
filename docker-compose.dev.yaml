@@ -4,7 +4,10 @@ services:
     # nginx
     # docker exec -it docker-php_app_1 bin/bash
     web:
-        image: nginx:latest
+        #image: nginx:latest
+        build:
+            context: .
+            dockerfile: nginx/Dockerfile
         ports:
           - "82:80"
         volumes:
@@ -21,17 +24,12 @@ services:
             # Image exist aleardy bu we gonna customise
             target: "${BUILD_TARGET:-app}"
         volumes:
+            # If I specify just the one location, I am saying protect this location inside the container
+            # - /var/www/html/vendor
             - ./app:/var/www/html
             # Si tu veux modifier le fichier sans reconstruire l'image
             - ./php/conf.d/xdebug.ini:/usr/local/etc/php/conf.d/xdebug.ini:ro
         environment:
-            MYSQL_HOST: db
-            MYSQL_PORT: ${MYSQL_PORT}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
-            MYSQL_USER: ${MYSQL_USER}
-            REDIS_HOST: cache
-            REDIS_PORT: ${REDIS_PORT}
             XDEBUG_MODE: ${XDEBUG_MODE:-off}
             # XDEBUG_MODE=debug docker-compose -f docker-compose.dev.yaml up --build -d
         extra_hosts:
@@ -47,23 +45,9 @@ services:
             - host.docker.internal:host-gateway
     # mysql
     db:
-        image: mysql:8.0
-        volumes:
-            # pour stocker les données de la base de données MySQL dans le répertoire /var/lib/mysql du conteneur.
-            # Cela garantit que les données persistent même après que le conteneur est supprimé ou reconstruit.
-            -   mysqldata:/var/lib/mysql
         ports:
             - "4306:3306"
         restart: unless-stopped
-        environment:
-            MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
-            MYSQL_USER: ${MYSQL_USER}
-            MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-            MYSQL_DATABASE: ${MYSQL_DATABASE}
-    # redis
-    # docker exec -ti docker-php_cache_1 redis-cli
-    cache:
-        image: redis:latest
 volumes:
     mysqldata:
 # docker-composer up --build ( will look at my docker files and build images for me )
