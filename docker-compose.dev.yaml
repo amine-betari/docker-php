@@ -1,5 +1,5 @@
 # docker-compose -f docker-compose.dev.yaml up --build -d
-# docker-compose -f docker-compose.dev.yaml  --env-file .env.local up --build -d
+# docker-compose -f docker-compose.dev.yaml  --env-file .env.local up --build -d (before commit multi composer)
 services:
     # nginx
     # docker exec -it docker-php_app_1 bin/bash

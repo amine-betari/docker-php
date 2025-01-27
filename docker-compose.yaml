@@ -35,3 +35,6 @@ services:
 volumes:
     mysqldata:
 # docker-composer up --build ( will look at my docker files and build images for me )
+
+
+# docker-compose -f docker-compose.yaml -f docker-compose.dev.yaml --env-file .env.local  up --build -d
