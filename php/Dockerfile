@@ -1,5 +1,5 @@
 # docker build --target app -t abetari/php-composer:1.0 -f ./php/Dockerfile .
-FROM php:8.1-fpm-alpine as app
+FROM php:8.2-fpm-alpine as app
 # alpine veut dire une image minimaliste avec un minimum de choses dedans
 # Comme ça je peux installer ce que je veux
 
@@ -8,9 +8,29 @@ FROM php:8.1-fpm-alpine as app
 # Useful to install Xdebug
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
+# APK stands for Alpine Linux package keeper (manager). One can use the apk command to delete, install, upgrade, or list software
+# An access control list (ACL) contains rules that grant or deny access to certain digital environments.
+# Description: FASTCgi (fcgi) is a language independent, high performant extension to CGI. https://archlinux.org/packages/extra/x86_64/fcgi/
+# The file command is used to determine the type of a file
+# The gettext program translates a natural language message into the user's language
+RUN apk add --no-cache \
+		acl \
+        bash \
+        fcgi \
+		file \
+		gettext \
+		git \
+	;
 
 RUN set -eux; \
-    install-php-extensions pdo pdo_mysql;
+    install-php-extensions \
+    	intl \
+    	zip \
+    	apcu \
+		opcache \
+        pdo pdo_mysql \
+    ;
+#RUN set -eux; install-php-extensions pdo pdo_mysql;
 # RUN docker-php-ext-install pdo pdo_mysql
 
 # docker build -t amine:php81 -f php/Dockerfile .
@@ -65,3 +85,6 @@ COPY ./php/conf.d/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 # Install xdebug
 RUN set -eux; \
 	install-php-extensions xdebug
+
+RUN curl -sS https://get.symfony.com/cli/installer | bash
+RUN mv /root/.symfony*/bin/symfony /usr/local/bin/symfony
